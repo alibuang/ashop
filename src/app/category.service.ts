@@ -1,5 +1,6 @@
 import { Injectable, Query } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,12 @@ export class CategoryService {
 
   getCategories(){
     // return this.db.doc('/categories').collection()
-    return this.db.collection('/categories',
-    ref => ref.orderBy("name")
-    ).valueChanges();
+    return this.db.collection('/categories').snapshotChanges().pipe(
+      map( actions => actions.map(a => {
+        const data = a.payload.doc.data()
+        const id = a.payload.doc.id;
+        return {id,data}
+      }))
+    )
   }
 }

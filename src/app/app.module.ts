@@ -6,6 +6,7 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireAuthModule} from '@angular/fire/auth';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ngx-custom-validators';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -45,6 +46,7 @@ import { ProductService } from './product.service';
   imports: [
     BrowserModule,
     FormsModule,
+    CustomFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
@@ -58,13 +60,17 @@ import { ProductService } from './product.service';
       {path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard]},
       {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
 
-      { path: 'admin/products', 
-        component: AdminProductsComponent, 
-        canActivate: [AuthGuard, AdminAuthGuard]},
-
       { path: 'admin/products/new', 
         component: ProductFormComponent, 
         canActivate: [AuthGuard, AdminAuthGuard]},
+
+      { path: 'admin/products/:id', 
+      component: ProductFormComponent, 
+      canActivate: [AuthGuard, AdminAuthGuard]},
+        
+      { path: 'admin/products', 
+      component: AdminProductsComponent, 
+      canActivate: [AuthGuard, AdminAuthGuard]},
 
       { path: 'admin/orders',
         component: AdminOrdersComponent,
