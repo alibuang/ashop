@@ -1,13 +1,14 @@
 <p>
     <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
 </p>
-<p>
+<!-- <p>
     <input 
     #query
     (keyup)="filter(query.value)"
     type="text" class="form-control" placeholder="Search...">
-</p>
-<table class="table">
+</p> -->
+
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
     <thead>
         <tr>
             <th>Title</th>
@@ -16,9 +17,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let p of filteredProducts">
-            <td>{{ p.data.title}}</td>
-            <td>{{ p.data.price}}</td>
+        <!-- <tr *ngFor="let p of filteredProducts"> -->
+        <tr *ngFor="let p of products">
+            <td>{{ p.title}}</td>
+            <td>{{ p.price}}</td>
             <td>
                 <a [routerLink]="['/admin/products', p.id]">Edit</a>
             </td>
