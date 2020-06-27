@@ -30,6 +30,7 @@ export class AdminProductsComponent implements OnInit , OnDestroy{
       );
       this.dtTrigger.next();
       });
+      
    }
 
   ngOnInit(): void {
@@ -38,13 +39,6 @@ export class AdminProductsComponent implements OnInit , OnDestroy{
       pageLength: 5,
       retrieve: true,
     };
-  }
-
-  filter(query: string){
-    this.filteredProducts = (query) ?
-      this.products.filter(p => p.title.toLowerCase().includes(query.toLowerCase())):
-      this.products;
-      // this.dtTrigger.next();
   }
 
   ngOnDestroy(){
