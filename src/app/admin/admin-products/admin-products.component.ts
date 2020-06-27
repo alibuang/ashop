@@ -40,13 +40,6 @@ export class AdminProductsComponent implements OnInit , OnDestroy{
     };
   }
 
-  filter(query: string){
-    this.filteredProducts = (query) ?
-      this.products.filter(p => p.title.toLowerCase().includes(query.toLowerCase())):
-      this.products;
-      // this.dtTrigger.next();
-  }
-
   ngOnDestroy(){
     this.subscription.unsubscribe();
     this.dtTrigger.unsubscribe();
