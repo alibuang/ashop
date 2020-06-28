@@ -9,8 +9,7 @@ export class CategoryService {
 
   constructor(private db: AngularFirestore) { }
 
-  getCategories(){
-    // return this.db.doc('/categories').collection()
+  getAll(){
     return this.db.collection('/categories').snapshotChanges().pipe(
       map( actions => actions.map(a => {
         const data = a.payload.doc.data()
